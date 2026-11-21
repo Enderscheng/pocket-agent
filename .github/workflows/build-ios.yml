@@ -1,0 +1,32 @@
+name: Build Pocket Agent
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - name: Download source
+        uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: |
+          if ! command -v xcodegen >/dev/null 2>&1; then
+            brew install xcodegen
+          fi
+
+      - name: Build unsigned iPhone app
+        run: bash scripts/build-ios.sh
+
+      - name: Upload IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: PocketAgent-IPA
+          path: build/PocketAgent.ipa
+          if-no-files-found: error
+          retention-days: 7
