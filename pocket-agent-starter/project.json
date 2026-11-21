@@ -1,0 +1,45 @@
+{
+  "name": "PocketAgent",
+  "options": {
+    "deploymentTarget": { "iOS": "16.0" },
+    "developmentLanguage": "en"
+  },
+  "settings": {
+    "base": {
+      "SWIFT_VERSION": "5.0",
+      "TARGETED_DEVICE_FAMILY": "1",
+      "CODE_SIGNING_ALLOWED": "NO"
+    }
+  },
+  "targets": {
+    "PocketAgent": {
+      "type": "application",
+      "platform": "iOS",
+      "sources": ["PocketAgent"],
+      "settings": {
+        "base": {
+          "PRODUCT_BUNDLE_IDENTIFIER": "org.pocketagent.siritest",
+          "MARKETING_VERSION": "0.1.0",
+          "CURRENT_PROJECT_VERSION": "1",
+          "GENERATE_INFOPLIST_FILE": "NO"
+        }
+      },
+      "info": {
+        "path": "Generated/Info.plist",
+        "properties": {
+          "CFBundleDisplayName": "Pocket Agent",
+          "CFBundleShortVersionString": "$(MARKETING_VERSION)",
+          "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
+          "LSRequiresIPhoneOS": true,
+          "UILaunchScreen": {},
+          "UISupportedInterfaceOrientations": ["UIInterfaceOrientationPortrait"]
+        }
+      }
+    }
+  },
+  "schemes": {
+    "PocketAgent": {
+      "build": { "targets": { "PocketAgent": "all" } }
+    }
+  }
+}
