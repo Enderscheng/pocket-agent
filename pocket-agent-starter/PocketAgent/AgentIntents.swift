@@ -21,7 +21,7 @@ struct CaptureTaskIntent: AppIntent {
     var task: String
 
     static var parameterSummary: some ParameterSummary {
-        Summary("Test capture of \(.$task)")
+        Summary("Test capture of \(\.$task)")
     }
 
     func perform() async throws -> some IntentResult & ProvidesDialog {
