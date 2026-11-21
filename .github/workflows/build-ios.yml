@@ -21,12 +21,14 @@ jobs:
           fi
 
       - name: Build unsigned iPhone app
-        run: bash scripts/build-ios.sh
+        run: | 
+          cd pocket-agent-starter
+          bash scripts/build-ios.sh
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
         with:
           name: PocketAgent-IPA
-          path: build/PocketAgent.ipa
+          path: pocket-agent-starter/build/PocketAgent.ipa
           if-no-files-found: error
           retention-days: 7
