@@ -1,4 +1,23 @@
 import AppIntents
+import Foundation
+
+extension Notification.Name {
+    static let pocketVoiceRequested = Notification.Name("PocketAgent.startVoiceChat")
+}
+
+struct StartVoiceChatIntent: AppIntent {
+    static var title: LocalizedStringResource = "Start Voice Chat"
+    static var description = IntentDescription("Opens Pocket Agent for a Cantonese voice conversation. Unlocking may be required.")
+    static var openAppWhenRun: Bool = true
+    static var authenticationPolicy: IntentAuthenticationPolicy = .requiresAuthentication
+
+    @MainActor
+    func perform() async throws -> some IntentResult {
+        UserDefaults.standard.set(true, forKey: "startVoiceChat")
+        NotificationCenter.default.post(name: .pocketVoiceRequested, object: nil)
+        return .result()
+    }
+}
 
 struct TestConnectionIntent: AppIntent {
     static var title: LocalizedStringResource = "Test Pocket Agent"
@@ -32,6 +51,12 @@ struct CaptureTaskIntent: AppIntent {
 
 struct PocketAgentShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
+        AppShortcut(
+            intent: StartVoiceChatIntent(),
+            phrases: ["Start a voice chat with \(.applicationName)", "Talk to \(.applicationName)"],
+            shortTitle: "Voice Chat",
+            systemImageName: "mic.circle.fill"
+        )
         AppShortcut(
             intent: TestConnectionIntent(),
             phrases: ["Test \(.applicationName)"],

@@ -2,6 +2,11 @@ name: Build Pocket Agent
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'pocket-agent-starter/**'
+      - '.github/workflows/build-ios.yml'
 
 permissions:
   contents: read

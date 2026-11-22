@@ -1,7 +1,9 @@
 {
   "name": "PocketAgent",
   "options": {
-    "deploymentTarget": { "iOS": "16.0" },
+    "deploymentTarget": {
+      "iOS": "16.0"
+    },
     "developmentLanguage": "en"
   },
   "settings": {
@@ -15,12 +17,14 @@
     "PocketAgent": {
       "type": "application",
       "platform": "iOS",
-      "sources": ["PocketAgent"],
+      "sources": [
+        "PocketAgent"
+      ],
       "settings": {
         "base": {
           "PRODUCT_BUNDLE_IDENTIFIER": "org.pocketagent.siritest",
-          "MARKETING_VERSION": "0.1.0",
-          "CURRENT_PROJECT_VERSION": "1",
+          "MARKETING_VERSION": "0.2.0",
+          "CURRENT_PROJECT_VERSION": "2",
           "GENERATE_INFOPLIST_FILE": "NO"
         }
       },
@@ -32,14 +36,22 @@
           "CFBundleVersion": "$(CURRENT_PROJECT_VERSION)",
           "LSRequiresIPhoneOS": true,
           "UILaunchScreen": {},
-          "UISupportedInterfaceOrientations": ["UIInterfaceOrientationPortrait"]
+          "UISupportedInterfaceOrientations": [
+            "UIInterfaceOrientationPortrait"
+          ],
+          "NSMicrophoneUsageDescription": "Pocket Agent uses the microphone while you are in a voice conversation.",
+          "NSSpeechRecognitionUsageDescription": "Pocket Agent transcribes your Cantonese speech so your cloud assistant can reply. Audio may be processed by Apple."
         }
       }
     }
   },
   "schemes": {
     "PocketAgent": {
-      "build": { "targets": { "PocketAgent": "all" } }
+      "build": {
+        "targets": {
+          "PocketAgent": "all"
+        }
+      }
     }
   }
 }
